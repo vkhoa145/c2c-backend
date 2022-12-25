@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  database: c2c_backend_database
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  
+development:
+  <<: *default
+  database: c2c_backend_development
+
+test:
+  <<: *default
+  database: c2c_backend_test
+
+production:
+  <<: *default
+  database: c2c_backend_production
+  username: c2c_backend
+  password: <%= ENV["C2C_BACKEND_DATABASE_PASSWORD"] %>
